@@ -1,331 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-	<style type="text/css">
-	*{
-		margin:0px;
-		padding:0px;
-	}
-
-	header{
-		position: fixed;
-		top: 0px;
-		background: orange;
-		width: 100%;
-		height: 100px;
-		font-size: 25px;
-		color: white;
-		text-align: center;
-		line-height: 45px;	
-		z-index: 100;
-	}
-	
-	section{
-		margin-top: 100px;
-		margin-bottom: 140px;
-		overflow: hidden;
-		 
-	}
-	section ul{
-		list-style: none;
-		width: 100%;
-	
-	}
-	section li{
-		height: 50px;
-		width: 100%;
-		margin-top: 10px;
-		background: pink;
-		text-align: center;
-		font-size: 20px;
-	}
-	.progress{
-		background: yellowgreen;
-		height: 70px;
-		text-align:center;
-		line-height: 70px;
-		color: white;
-	}
-	footer{
-		position: fixed;
-		bottom: 0px;
-		left: 0px;
-		width: 100%;
-	}
-	#range_a{
-		width: 900px;
-		height: 7px;
-	}
-	.on_off{
-		background: yellow;
-		height: 60px;
-		display: flex;
-		display: -webkit-flex;
-	}
-	.aa{
-		flex: 1;
-		float: left;
-		height: 60px;
-		
-	}
-	.aa img{
-		height: 100%;
-	
-	}
-	#bb{
-		width: 60px;
-		height: 100%;
-        margin-left:112px;
-		border-radius:60px;
-		overflow: hidden; 
-	}
-	.cc{
-		height: 100%;
-        margin-left:125px;
-	}
-	#range_b{
-		width: 100px;
-		height: 61px;
-		margin-left: 20px;
-	}
-	ul li.current{
-		color: #fff;
-		background: red;
-	}
-	</style>
-
-</head>
-<body>
-<header>
-<p>当前播放的音乐</p>
-<p id="songname">邓超-超级英雄</p>
-</header>
-<section>
-<audio id="ado" src="music/邓超 - 超级英雄 (《奔跑吧兄弟》真人秀主题曲).mp3"></audio>
-
-</section>
-
-<footer>
-<div class="progress">
-<div id="timing" style="width:200px;float:left;">00:00</div>
-<input id="range_a" type="range" name=" " value="0">
-<div id="duration_" style="width:200px;float:right;">00:00</div>
-</div>
-<div class="on_off">
-<div class="aa"><div id="bb"><img src="img/dengChao.png"></div></div>
-<div class="aa cc" id="pre"><img src="img/pre.png"></div>
-<div class="aa cc" id="play"><img src="img/play.png"></div>
-<div class="aa cc" id="next"><img src="img/next.png"></div>
-<div class="aa" id="dd"><img src="img/vol.png"><input id="range_b" type="range" name="" min="0" max="1" step="0.1" value="0"></div>
-</div>
-</footer>
-<script type="text/javascript">
-window.onload=function(){
-	var musicList=[{
-		"src": "music/邓超 - 超级英雄 (《奔跑吧兄弟》真人秀主题曲).mp3",
-	    "img": "img/dengChao.png",
-	    "name": "邓超-超级英雄"
-	},{
-		"src": "music/TFBOYS - 大梦想家.mp3",
-		"img": "img/tf.png",
-		"name": "tfboys-大梦想家"
-	}, {
-		"src": "music/莫文蔚 - 阴天.mp3",
-		"img": "img/mo.jpg",
-		"name": "莫文蔚-阴天"
-	}, {
-		"src": "music/李易峰 - 年少有你 (《栀子花开》电影正青春推广曲).mp3",
-		"img": "img/feng.jpg",
-		"name": "李易峰-年少有你"
-	}, {
-		"src": "music/张碧晨 - 年轮.mp3",
-		"img": "img/bi.jpg",
-		"name": "张碧晨-年轮"
-	}, {
-		"src": "music/G.E.M. 邓紫棋 - 喜欢你.mp3",
-		"img": "img/deng.jpg",
-		"name": "g.e.m.邓紫棋-喜欢你"
-	}, {
-		"src": "music/张靓颖 - 终于等到你 (《咱们结婚吧》电视剧片尾曲_《咱们结婚吧》电影主题曲).mp3",
-		"img": "img/zhangLiangYing.png",
-		"name": "张靓颖-终于等到你"
-	}, {
-		"src": "music/金志文 - 夏洛特烦恼.mp3",
-		"img": "img/jin.jpg",
-		"name": "金志文-夏洛特烦恼"
-	}, {
-		"src": "music/Michael Learns To Rock - Take Me To Your Heart.mp3",
-		"img": "img/take.png",
-		"name": "Michael-take me to u heart"
-	},{
-		"src": "music/周杰伦 - 算什么男人.mp3",
-		"img": "img/zhouJL.png",
-		"name": "周杰伦-算什么男人"
-	}];
-	var oSe=document.getElementsByTagName("section")[0];
-	var oUl=document.createElement("ul");
-	var Len=musicList.length;
-	var ado=document.getElementById("ado");
-	var duration_=document.getElementById('duration_');
-
-	
-	for(var i=0;i<Len;i++){
-		var oLi=document.createElement("li");
-		var str=musicList[i].name;
-		oLi.innerHTML=str;
-		oUl.appendChild(oLi);
-
-	}
-	oSe.appendChild(oUl);
-	//2.把第一个li添加当前的current类
-	var first=document.querySelector("li");
-	var range=document.getElementById('range_a');
-	first.className='current';
-
-	//设置时长
-	var all=ado.duration;
-	var allM=Math.floor(parseInt(all)/60)>=10?(Math.floor(parseInt(all)/60)):('0'+Math.floor(parseInt(all)/60));
-	var allS=Math.floor(parseInt(all)%60)>=10?(Math.floor(parseInt(all)%60)):('0'+Math.floor(parseInt(all)%60));
-	duration_.innerHTML=allM+":"+allS;
-	
-	range.max = parseInt(all);
-	duration_.innerHTML=allM+':'+allS;
-
-	var oLi=document.querySelectorAll('li');
-	var oSingerImg=document.getElementById('bb').getElementsByTagName('img')[0];
-	var oPlayImg=document.getElementById('play').getElementsByTagName('img')[0];
-	var oVoiceImg=document.getElementById('dd').getElementsByTagName('img')[0];
-	var oSongName=document.getElementById('songname');
-
-	var num;
-	for(var i=0;i<Len;i++){
-		oLi[i].index=i;
-		oLi[i].onclick=function(){
-			for(var j=0;j<Len;j++){
-				oLi[j].className='';
-			}
-			this.className='current';
-			num=this.index;
-			oSingerImg.src=musicList[num].img;
-
-			oSongName.innerHTML=musicList[num].name;
-			// console.log(oSongName);
-
-			ado.src=musicList[num].src;
-			setTimeout(startP,200);
-
-		}
-		function startP(){
-			var all=ado.duration;
-			var allM=Math.floor(parseInt(all)/60)>=10?(Math.floor(parseInt(all)/60)):('0'+Math.floor(parseInt(all)/60));
-			var allS=Math.floor(parseInt(all)%60)>=10?(Math.floor(parseInt(all)%60)):('0'+Math.floor(parseInt(all)%60));
-			
-			
-			range.max = parseInt(all);
-			duration_.innerHTML=allM+":"+allS;
-			ado.play();
-			play.src='img/stop.png';
-			ado.ontimeupdate=changeT;
-		}
-		function changeT(){
-			var current=ado.currentTime;
-			var allM=Math.floor(parseInt(current)/60)>=10?(Math.floor(parseInt(current)/60)):('0'+Math.floor(parseInt(current)/60));
-			var allS=Math.floor(parseInt(current)%60)>=10?(Math.floor(parseInt(current)%60)):('0'+Math.floor(parseInt(current)%60));
-			duration_.innerHTML=allM+":"+allS;
-			range.value=parseInt(current);
-
-		}
-		range.oninput=function(){
-			var val=this.value;
-			ado.currentTime=val;
-			ado.ontimeupdate=changeT;
-		}
-		play.onclick=function(){
-			console.log(play);
-			if(ado.pause){
-				ado.play();
-				oPlayImg.src='img/stop.png';
-				ado.ontimeupdate=changeT;
-			}else{
-				ado.pause();
-				oPlayImg.src='img/play.png';
-
-			}
-		}
-		//上一首
-		var pre=document.getElementById('pre');
-		pre.onclick=function(){
-			num--;
-			if(num<0){
-				num=len-1;
-			}
-			ado.src=musicList[num].src;
-			oSingerImg.src=musicList[num].img;
-			for(var j=0;j<Len;j++){
-				oLi[j].className='';
-
-			}
-			oLi[num].className='current';
-			setTimeout(startP,200);
-
-		}
-		//下一首
-		var next=document.getElementById('next');
-		next.onclick=nextFn;
-		function nextFn(){
-			num++;
-			if(num>Len-1){
-				num=0;
-			}
-			ado.src=musicList[num].src;
-			oSingerImg.src=musicList[num].img;
-			for(var j=0;j<Len;j++){
-				oLi[j].className='';
-			}
-			oLi[num].className='current';
-			setTimeout(startP,200);
-
-		}
-		var volume=document.getElementById('dd');
-		var volImg=volume.getElementsByTagName('img')[0];
-		volImg.onclick=function(){
-			if(ado.muted){
-				ado.muted=false;
-				ado.volume=1;
-				this.src='img/vol.png';
-			}else{
-				ado.muted=true;
-				ado.volume=0;
-				this.src='img/novol.png';
-			}
-
-		}
-		var vol=document.getElementById('range_b');
-		vol.oninput=function(){
-			var val=this.value;
-			ado.volume=val;
-			console.log(ado.volume);
-			if(val==0){
-				oVoiceImg.src='img/novol.png';
-			}
-			else{
-				oVoiceImg.src='img/vol.png';
-			}
-		}
-		ado.onended=nextFn;
-
-
-	}
-
-
-
-
-
-
-
-
-}
-</script>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	</head>
+	<body>
+		<header>
+			<p>当前播放的音乐</p>
+			<span id="singerName">邓超</span>
+			-
+			<span id="songName">超级英雄</span>
+		</header>
+		<section>
+			<audio id="ado" src="music/DC.mp3"></audio>
+			<!-- <ul>
+				<li class="current">
+					<span id="singer">邓超</span>
+					-
+					<span id="song">超级英雄</span>
+				</li>
+				<li>
+					<span id="singer">邓超</span>
+					-
+					<span id="song">超级英雄</span>
+				</li>
+			</ul> -->
+		</section>
+		<footer>
+			<div id="rangeBar">
+				<div id="currentT">00:00</div>
+				<input id="range" type="range" name="" min="0" value="0" />
+				<div id="allT">00:00</div>
+			</div>
+			<div id="controls">
+				<div id="peoImg">
+					<img src="img/dengChao.png"/>
+				</div>
+				<div id="pre">
+					<img src="img/pre.png"/>
+				</div>
+				<div id="play">
+					<img src="img/play.png"/>
+				</div>
+				<div id="next">
+					<img src="img/next.png"/>
+				</div>
+				<div id="volume">
+					<img src="img/vol.png"/>
+					<input id="vol" type="range" min="0" max="1" step="0.1" value="1" />
+				</div>
+			</div>
+		</footer>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+	</body>
 </html>

@@ -1,0 +1,101 @@
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+ul li{
+	list-style: none;
+}
+header{
+	height: 100px;
+	background: orange;
+	width: 100%;
+	text-align: center;
+	font-size: 30px;
+	color: #fff;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+header p{
+	font-size: 25px;
+	font-weight: bold;
+}
+section{
+	text-align: center;
+	margin-top: 110px;
+	margin-bottom: 110px;
+}
+section ul li{
+	height: 50px;
+	background: pink;
+	margin-top: 10px;
+}
+ul li.current{
+	background: red;
+	color: #fff;
+}
+ul li:hover{
+	background: red;
+}
+ul li span{
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	font-size: 25px;
+}
+footer{
+	height: 100px;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+}
+footer #rangeBar,footer #controls{
+	height: 50px;
+	background: yellowgreen;
+	display: flex;
+	display: -webkit-flex;
+	display: -moz-flex;
+	line-height: 50px;
+	color: #fff;
+
+}
+footer #controls{
+	background: orange;
+}
+#currentT,#allT{
+	
+	flex: 2;
+	-webkit-flex: 2;
+	-moz-flex: 2;
+	border: 1px solid red;
+	
+}
+#range{
+	flex: 8;
+	-webkit-flex: 8;
+	-moz-flex: 8;
+}
+#controls div{
+	flex: 1;
+	-webkit-flex: 1;
+	-moz-flex: 1;
+	overflow: hidden;
+}
+#controls img{
+	height: 100%;
+}
+#peoImg img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+#volume{
+	line-height: 50px;
+}
+#volume img{
+	vertical-align: middle;
+}
+
